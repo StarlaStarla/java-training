@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <properties resource="config/database.properties"/>
+    <!--
+    <context>标签的targetRuntime属性指定为MyBatis3Simple的时候，type只能选用ANNOTATEDMAPPER或者XMLMAPPER。
+    <context>标签的targetRuntime属性指定为MyBatis3的时候，type可以选用ANNOTATEDMAPPER、XMLMAPPER或者MIXEDMAPPER。
+    -->
+    <context id="MysqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="${driver}"
+                        connectionURL="${url}"
+                        userId="${user}"
+                        password="${password}">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="org.example.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">-->
+        <!--            <property name="enableSubPackages" value="true"/>-->
+        <!--        </sqlMapGenerator>-->
+
+        <!--        <javaClientGenerator type="XMLMAPPER" targetPackage="org.example.mapper" targetProject="src/main/java">-->
+        <!--            <property name="enableSubPackages" value="true"/>-->
+        <!--        </javaClientGenerator>-->
+
+        <!-- type 选项：
+            XMLMAPPER: 生成基于 XML 的 Mapper 接口和 XML 映射文件，不会生成 SQL Provider 类。
+            ANNOTATEDMAPPER: 生成基于注解的 Mapper，不包含 SQL Provider。
+            MIXEDMAPPER: 生成既包含注解也可能包含 SQL Provider 的 Mapper。
+            MAPPER: 生成只有 Mapper 接口，没有 XML 或 SQL Provider。
+        -->
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="org.example.mapper" targetProject="src/main/java"/>
+
+        <!-- 根据实际情况配置表和模型 -->
+        <!-- 不生成Example类, example类用于创建一个 Criteria 对象来指定各种查询条件， 缩减 SQL 注入的风险 -->
+        <table tableName="department" domainObjectName="Department"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="employee" domainObjectName="Employee"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+    </context>
+</generatorConfiguration>

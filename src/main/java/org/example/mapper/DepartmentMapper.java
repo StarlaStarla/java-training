@@ -18,41 +18,41 @@ public interface DepartmentMapper {
     int deleteByPrimaryKey(Integer id);
 
     @Insert({
-        "insert into department (id, dname, ",
+        "insert into department (id, name, ",
         "location)",
-        "values (#{id,jdbcType=INTEGER}, #{dname,jdbcType=VARCHAR}, ",
+        "values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, ",
         "#{location,jdbcType=VARCHAR})"
     })
     int insert(Department row);
 
     @Select({
         "select",
-        "id, dname, location",
+        "id, name, location",
         "from department",
         "where id = #{id,jdbcType=INTEGER}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="dname", property="dname", jdbcType=JdbcType.VARCHAR),
+        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
         @Result(column="location", property="location", jdbcType=JdbcType.VARCHAR)
     })
     Department selectByPrimaryKey(Integer id);
 
     @Select({
         "select",
-        "id, dname, location",
+        "id, name, location",
         "from department"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="dname", property="dname", jdbcType=JdbcType.VARCHAR),
+        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
         @Result(column="location", property="location", jdbcType=JdbcType.VARCHAR)
     })
     List<Department> selectAll();
 
     @Update({
         "update department",
-        "set dname = #{dname,jdbcType=VARCHAR},",
+        "set name = #{name,jdbcType=VARCHAR},",
           "location = #{location,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=INTEGER}"
     })

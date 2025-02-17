@@ -5,9 +5,9 @@ public class Employee {
 
     private String name;
 
-    private Integer age;
+    private String email;
 
-    private Integer department;
+    private Integer departmentId;
 
     public Integer getId() {
         return id;
@@ -25,19 +25,19 @@ public class Employee {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getAge() {
-        return age;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 
-    public Integer getDepartment() {
-        return department;
+    public Integer getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartment(Integer department) {
-        this.department = department;
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
     }
 }

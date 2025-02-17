@@ -19,44 +19,44 @@ public interface EmployeeMapper {
 
     @Insert({
         "insert into employee (id, name, ",
-        "age, department)",
+        "email, department_id)",
         "values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, ",
-        "#{age,jdbcType=INTEGER}, #{department,jdbcType=INTEGER})"
+        "#{email,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER})"
     })
     int insert(Employee row);
 
     @Select({
         "select",
-        "id, name, age, department",
+        "id, name, email, department_id",
         "from employee",
         "where id = #{id,jdbcType=INTEGER}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
-        @Result(column="age", property="age", jdbcType=JdbcType.INTEGER),
-        @Result(column="department", property="department", jdbcType=JdbcType.INTEGER)
+        @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
+        @Result(column="department_id", property="departmentId", jdbcType=JdbcType.INTEGER)
     })
     Employee selectByPrimaryKey(Integer id);
 
     @Select({
         "select",
-        "id, name, age, department",
+        "id, name, email, department_id",
         "from employee"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
-        @Result(column="age", property="age", jdbcType=JdbcType.INTEGER),
-        @Result(column="department", property="department", jdbcType=JdbcType.INTEGER)
+        @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
+        @Result(column="department_id", property="departmentId", jdbcType=JdbcType.INTEGER)
     })
     List<Employee> selectAll();
 
     @Update({
         "update employee",
         "set name = #{name,jdbcType=VARCHAR},",
-          "age = #{age,jdbcType=INTEGER},",
-          "department = #{department,jdbcType=INTEGER}",
+          "email = #{email,jdbcType=VARCHAR},",
+          "department_id = #{departmentId,jdbcType=INTEGER}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Employee row);
